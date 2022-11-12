@@ -2,7 +2,7 @@
 err = None
 from math import sqrt
 
-class Mru:
+class Mru: # classe relacionada ao MRU
     def __init__(self, v, t, s, so, ds):
         # v → velocidade
         # t → tempo
@@ -16,12 +16,12 @@ class Mru:
         self.ds = ds
 
     @classmethod
-    def lista(cls):
+    def lista(cls): # mostra a lista de abreviações que deve ser usada para MRU
         print('\n\nA lista estará da seguinte maneira:\nabreviação: o que significa\nDigite no formato abreviação:valor\n')
         print('v: Velocidade (m/s)\nt: Tempo (s)\ns: Posição final (m)\nso: Posição inicial (m)\nds: Deslocamento (ΔS) (m)')
 
     @classmethod
-    def anotar(cls, nome, resultado):
+    def anotar(cls, nome, resultado): # anota os resultados em um arquivo de texto com o nome escolhido pelo usuário
         texto = f'Resultados\n\nVelocidade: {resultado["v"]} m/s\nTempo: {resultado["t"]} s\nPosição final: {resultado["s"]} m\nPosição inicial: {resultado["so"]} m\nDeslocamento: {resultado["ds"]} m'
         with open(f'{nome}.txt', 'w') as f: f.write(texto)
 
@@ -43,7 +43,7 @@ class Mru:
 
         return result
 
-    def _ve(self):
+    def _ve(self): # calcula a velocidade
         if not self.v:
             try:
                 self.v = (self.s - self.so) / self.t
@@ -53,7 +53,7 @@ class Mru:
                 except (ValueError, TypeError):
                     self.v = err
 
-    def _te(self):
+    def _te(self): # calcula o tempo
         if not self.t:
             try:
                 self.t = (self.s - self.so)/self.v
@@ -63,7 +63,7 @@ class Mru:
                 except (ValueError, TypeError):
                     self.t = err
     
-    def _sf(self):
+    def _sf(self): # calcula a posição final
         if not self.s:
             try:
                 self.s = self.so + self.v * self.t
@@ -73,7 +73,7 @@ class Mru:
                 except (ValueError, TypeError):
                     self.s = err
 
-    def _sini(self):
+    def _sini(self): # calcula a posição inicial
         if not self.so:
             try:
                 self.so = self.s - (self.v * self.t)
@@ -83,7 +83,7 @@ class Mru:
                 except (ValueError, TypeError):
                     self.so = err
 
-    def _des(self):
+    def _des(self): # calcula o deslocamento
         if not self.ds:
             try:
                 self.ds = self.s - self.so
@@ -93,7 +93,7 @@ class Mru:
                 except (ValueError, TypeError):
                     self.ds = err
 
-class Mruv:
+class Mruv: # classe relacionada a MRUV
     def __init__(self, a, dv, t, v, vo, s, so, ds):
         # a → aceleração
         # dv → variação da velocidade
@@ -113,12 +113,12 @@ class Mruv:
         self.ds = ds
 
     @classmethod
-    def lista(cls):
+    def lista(cls): # mostra a lista de abreviações que deve ser usada para MRUV
         print('\n\nA lista estará da seguinte maneira:\nabreviação: o que significa\nDigite no formato abreviação:valor\n')
         print('a: Aceleração (m/s²)\ndv: Variação da velocidade (ΔV) (m/s)\nt: Tempo \nv: Velocidade final (m/s)\nvo: Velocidade inicial (m/s)\ns: Posição final (m)\nso: Posição inicial (m)\nds: Deslocamento (ΔS) (m)')
 
     @classmethod
-    def anotar(cls, nome, resultado):
+    def anotar(cls, nome, resultado): # anota os resultados em um arquivo de texto com o nome escolhido pelo usuário
         texto = f'Resultados\n\nAceleração: {resultado["a"]} m/s²\nVariação da velocidade: {resultado["dv"]} m/s\nTempo: {resultado["t"]} s\nVelocidade final: {resultado["v"]} m/s\nVelocidade inicial: {resultado["vo"]} m/s\nPosição final: {resultado["s"]} m\nPosição inicial: {resultado["so"]} m\nDeslocamento: {resultado["ds"]} m'
         with open(f'{nome}.txt', 'w') as f: f.write(texto)
     
@@ -146,7 +146,7 @@ class Mruv:
 
         return result
 
-    def _ac(self):
+    def _ac(self): # calcula a aceleração
         if not self.a:
             try:
                 self.a = self.ds / self.t
@@ -168,7 +168,7 @@ class Mruv:
                                 except (ValueError, TypeError):
                                     self.a = err
     
-    def _dev(self):
+    def _dev(self): # calcula a variação da velocidade
         if not self.dv:
             try:
                 self.dv = self.v - self.vo
@@ -178,7 +178,7 @@ class Mruv:
                 except (ValueError, TypeError):
                     self.dv = err
     
-    def _te(self):
+    def _te(self): # calcula o tempo
         if not self.t:
             try:
                 self.t = self.dv / self.a
@@ -188,7 +188,7 @@ class Mruv:
                 except (ValueError, TypeError):
                     self.t = err
     
-    def _vf(self):
+    def _vf(self): # calcula a velocidade final
         if not self.v:
             try:
                 self.v = self.vo + self.a * self.t
@@ -204,7 +204,7 @@ class Mruv:
                         except (ValueError, TypeError):
                             self.v = err
     
-    def _vi(self):
+    def _vi(self): # calcula a velocidade inicial
         if not self.vo:
             try:
                 self.vo = self.v - self.a * self.t
@@ -226,7 +226,7 @@ class Mruv:
                                 except (ValueError, TypeError):
                                     self.vo = err
     
-    def _sf(self):
+    def _sf(self): # calcula a posição final
         if not self.s:
             try:
                 self.s = self.so + self.vo * self.t + (self.a * self.t)/2
@@ -239,7 +239,7 @@ class Mruv:
                     except (ValueError, TypeError):
                         self.s = err
     
-    def _sini(self):
+    def _sini(self): # calcula a posição inicial
         if not self.so:
             try:
                 self.so = self.s - self.vo * self.t - (self.a * (self.t ** 2))/2
@@ -252,22 +252,23 @@ class Mruv:
                     except (ValueError, TypeError):
                         self.so = err
     
-    def _des(self):
-        try:
-            self.ds = self.vo * self.t + (self.a * (self.t ** 2))/2
-        except (ValueError, TypeError):
+    def _des(self): # calcula o deslocamento
+        if not self.ds:
             try:
-                self.ds = ((self.v + self.vo) * (self.v - self.vo)) / (2 * self.a)
+                self.ds = self.vo * self.t + (self.a * (self.t ** 2))/2
             except (ValueError, TypeError):
                 try:
-                    self.ds = self.s - self.so
+                    self.ds = ((self.v + self.vo) * (self.v - self.vo)) / (2 * self.a)
                 except (ValueError, TypeError):
-                    self.ds = err
+                    try:
+                        self.ds = self.s - self.so
+                    except (ValueError, TypeError):
+                        self.ds = err
 
-def header(num):
+def header(num): # header das calculadoras
     print('┅'*num)
 
-def u():
+def u(): # se o usuário escolher MRU
     print()
     header(50)
     print('  Calculadora de Movimento Retilíneo Uniforme!')
@@ -336,7 +337,7 @@ def u():
 
     print('\nObrigado por usar!\nFeito por: Canário')
 
-def uv():
+def uv(): # se o usuário escolher MRUV
     print()
     header(65)
     print('  Calculadora de Movimento Retilíneo Uniformemente Variado!')

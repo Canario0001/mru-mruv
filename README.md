@@ -10,7 +10,7 @@ O programa também escreve os resultados num arquivo de texto, se o usuário qui
 
 Programa testado oficialmente com Pyhon 3.11.0. Recomendado para Python 3.7+
 
-O programa pode ser iniciado pelo arquivo `main.py` ou utilizando sua função, `main()`
+O programa pode ser iniciado pelo arquivo `main.py` ou importanto a classe de acordo com o tipo de movimento que você quiser (`Mru` ou `Mruv`) e utilizando suas funções.
 
 ## TODO
 - [ ] Arrumar possíveis bugs
